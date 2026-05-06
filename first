@@ -1,2 +1,53 @@
 #include <iostream>
 using namespace std;
+
+struct Room {
+    int roomNumber;
+    string clientName;
+    string roomType;   
+    string checkInDate;
+    string checkOutDate;
+    string contactNumber;
+    bool isReserved = false; 
+};
+
+const int MAX = 50;
+Room hotelRoomsArray[MAX];
+
+void BookRoom() {
+    int roomNum;
+    cout << "\nEnter Room Number to Book (1-" << MAX << "): ";
+    cin >> roomNum;
+
+    if (roomNum < 1 || roomNum > MAX) {
+        cout << "Invalid Room Number!" << endl;
+        return;
+    }
+
+    int index = roomNum - 1; 
+
+    if (hotelRoomsArray[index].isReserved) {
+        cout << "Room is already booked!" << endl;
+    } else {
+        hotelRoomsArray[index].roomNumber = roomNum;
+        cout << "Enter Your Name: ";
+        cin>> hotelRoomsArray[index].clientName;
+        cout << "Room Type (Standard/VIP): ";
+        cin >> hotelRoomsArray[index].roomType;
+        cout << "Check-in Date: ";
+        cin >> hotelRoomsArray[index].checkInDate;
+        cout << "Check-out Date: ";
+        cin >> hotelRoomsArray[index].checkOutDate;
+        cout << "Contact Number: ";
+        cin >> hotelRoomsArray[index].contactNumber;
+        hotelRoomsArray[index].isReserved = true;
+        
+        cout << "\nYou have booked room number " << roomNum << endl;
+    }
+}
+
+
+int main() {
+ BookRoom();
+    return 0;
+}
