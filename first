@@ -102,6 +102,55 @@ void CancelBooking() {
     }
 }
 
+int main() {
+    int choice;
+
+    do {
+        cout << "\n========== Room Booking System ==========" << endl;
+        cout << "1. Book Room" << endl;
+        cout << "2. Search Booking" << endl;
+        cout << "3. Check Out Room" << endl;
+        cout << "4. Extend Booking" << endl;
+        cout << "5. Cancel Booking" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        // Run the function based on the user's choice.
+        switch (choice) {
+            case 1:
+                BookRoom();
+                break;
+
+            case 2:
+                SearchBooking();
+                break;
+
+            case 3:
+                CheckOutRoom();
+                break;
+
+            case 4:
+                ExtendRoom();
+                break;
+
+            case 5:
+                CancelBooking();
+                break;
+
+            case 6:
+                cout << "\nExiting program..." << endl;
+                break;
+
+            default:
+                cout << "\nInvalid choice! Please try again." << endl;
+        }
+
+    // Keep showing the menu until the user chooses Exit.
+    } while (choice != 6);
+
+    return 0;
+}
 
 
 
