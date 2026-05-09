@@ -47,7 +47,70 @@ void BookRoom() {
 }
 
 
+//wajd
+void CancelBooking() {
+    int roomNum;
+
+    cout << "\n========== Cancel Booking ==========" << endl;
+    cout << "Enter Room Number to Cancel Booking (1-" << MAX << "): ";
+    cin >> roomNum;
+
+    // Make sure the room number is within the valid range.
+    if (roomNum < 1 || roomNum > MAX) {
+        cout << "\nInvalid Room Number!" << endl;
+        return;
+    }
+
+    // Convert the room number to an array index.
+    int index = roomNum - 1;
+
+    // If the room is not reserved, there is no booking to cancel.
+    if (!hotelRoomsArray[index].isReserved) {
+        cout << "\nNo booking found for room number " << roomNum << "." << endl;
+        return;
+    }
+
+    // Show the booking details before cancelling it.
+    cout << "\nBooking Found!" << endl;
+    cout << "-----------------------------------" << endl;
+    cout << "Room Number   : " << hotelRoomsArray[index].roomNumber << endl;
+    cout << "Client Name   : " << hotelRoomsArray[index].clientName << endl;
+    cout << "Room Type     : " << hotelRoomsArray[index].roomType << endl;
+    cout << "Check-in Date : " << hotelRoomsArray[index].checkInDate << endl;
+    cout << "Check-out Date: " << hotelRoomsArray[index].checkOutDate << endl;
+    cout << "Contact Number: " << hotelRoomsArray[index].contactNumber << endl;
+    cout << "-----------------------------------" << endl;
+
+    char choice;
+    cout << "Are you sure you want to cancel this booking? (Y/N): ";
+    cin >> choice;
+
+    // Cancel the booking only if the user confirms.
+    if (choice == 'Y' || choice == 'y') {
+        hotelRoomsArray[index].clientName = "";
+        hotelRoomsArray[index].roomType = "";
+        hotelRoomsArray[index].checkInDate = "";
+        hotelRoomsArray[index].checkOutDate = "";
+        hotelRoomsArray[index].contactNumber = "";
+        hotelRoomsArray[index].isReserved = false;
+
+        cout << "\nBooking cancelled successfully!" << endl;
+        cout << "Room number " << roomNum << " is now available." << endl;
+    } else {
+        cout << "\nCancellation cancelled by user." << endl;
+        cout << "The booking is still active." << endl;
+    }
+}
+
+
+
+
+
+
 int main() {
  BookRoom();
     return 0;
 }
+
+
+
