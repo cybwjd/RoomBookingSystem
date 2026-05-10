@@ -101,6 +101,7 @@ void CancelBooking() {
         cout << "The booking is still active." << endl;
     }
 }
+//Reema
 void ExtendBooking(Room hotelRoomsArray[], int MAX) {
     int roomNumber;
     cout << "Extend Booking"<<endl;
