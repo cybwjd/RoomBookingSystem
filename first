@@ -14,6 +14,8 @@ struct Room {
 const int MAX = 50;
 Room hotelRoomsArray[MAX];
 
+
+//aram
 void BookRoom() {
     int roomNum;
     cout << "\nEnter Room Number to Book (1-" << MAX << "): ";
@@ -146,6 +148,36 @@ void ExtendBooking(Room hotelRoomsArray[], int MAX) {
     cout << "Check-Out: " << room.checkOutDate<<endl;
     cout << "Contact  : " << room.contactNumber<<endl;
 }
+
+// Maha
+void SearchBooking() {
+    int roomNum;
+
+    cout << "\nSearch Booking" << endl;
+    cout << "Enter Room Number (1-" << MAX << "): ";
+    cin >> roomNum;
+
+    if (roomNum < 1 || roomNum > MAX) {
+        cout << "Invalid Room Number!" << endl;
+        return;
+    }
+
+    int index = roomNum - 1;
+
+    if (hotelRoomsArray[index].isReserved) {
+        cout << "\nBooking Details" << endl;
+        cout << "Room Number : " << hotelRoomsArray[index].roomNumber << endl;
+        cout << "Client Name : " << hotelRoomsArray[index].clientName << endl;
+        cout << "Room Type   : " << hotelRoomsArray[index].roomType << endl;
+        cout << "Check-In    : " << hotelRoomsArray[index].checkInDate << endl;
+        cout << "Check-Out   : " << hotelRoomsArray[index].checkOutDate << endl;
+        cout << "Contact No. : " << hotelRoomsArray[index].contactNumber << endl;
+    } else {
+        cout << "\nNo booking found." << endl;
+    }
+}
+
+
 int main() {
     int choice;
 
