@@ -101,7 +101,50 @@ void CancelBooking() {
         cout << "The booking is still active." << endl;
     }
 }
+void ExtendBooking(Room hotelRoomsArray[], int MAX) {
+    int roomNumber;
+    cout << "Extend Booking"<<endl;
+    cout << "Enter Room Number: "<<endl;
+    cin >> roomNumber;
+    int foundRoom = -1;
+    for (int i = 0; i < MAX; i++) {
+        if (hotelRoomsArray[i].roomNumber == roomNumber && hotelRoomsArray[i].isReserved) {
+            foundRoom = i;
+            break;
+        }
+    }
+    if (foundRoom == -1) {
+        cout << "Room not found || is not currently reserved"<<endl;
+        return;
+    }
+    Room& room = hotelRoomsArray[foundRoom];
 
+    cout << "Current Booking "<<endl;
+    cout << "Client   : " << room.clientName<<endl;
+    cout << "Room Type: " << room.roomType<<endl;
+    cout << "Check-In : " << room.checkInDate<<endl;
+    cout << "Check-Out: " << room.checkOutDate<<endl;
+    cout << "Contact  : " << room.contactNumber<<endl;
+
+    string newCheckOut;
+    cout << "Enter New Check-Out Date (day/month/year): ";
+    cin >> newCheckOut;
+ 
+    if (newCheckOut == room.checkOutDate) {
+        cout << "New check-out date is the same no changes made."<<endl;
+        return;
+    }
+    room.checkOutDate = newCheckOut;
+    cout << "Booking extended"<<endl;
+    cout << "New Check-Out Date: " << room.checkOutDate<<endl;
+
+    cout << "Updated Booking "<<endl;
+    cout << "Client   : " << room.clientName<<endl;
+    cout << "Room Type: " << room.roomType<<endl;
+    cout << "Check-In : " << room.checkInDate<<endl;
+    cout << "Check-Out: " << room.checkOutDate<<endl;
+    cout << "Contact  : " << room.contactNumber<<endl;
+}
 int main() {
     int choice;
 
