@@ -232,10 +232,4 @@ int main() {
 
 
 
-int main() {
- BookRoom();
-    return 0;
-}
-
-
 
