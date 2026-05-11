@@ -176,7 +176,42 @@ void SearchBooking() {
         cout << "\nNo booking found." << endl;
     }
 }
+//weam
+void CheckOutRoom() {
+    int roomNum;
+    cout << "\n========== Check Out Room ==========" << endl;
+    cout << "Enter Room Number: ";
+    cin >> roomNum;
+    if (roomNum < 1 || roomNum > MAX) {
+        cout << "Invalid room number!" << endl;
+        return;
+    }
+    int index = roomNum - 1;
+    if (!hotelRoomsArray[index].isReserved) {
+        cout << "Room is not reserved!" << endl;
+        return;
+    }
 
+    char choice;
+    cout << "Proceed to payment? (Y/N): ";
+    cin >> choice;
+
+    if (choice == 'Y' || choice == 'y') {
+   cout << "\nProcessing payment..." << endl;
+    if (hotelRoomsArray[index].roomType == "VIP" || hotelRoomsArray[index].roomType == "vip") {
+            cout << "Total: 500 SAR" << endl;
+        } else {
+            cout << "Total: 300 SAR" << endl;
+        }
+      cout << "Payment successful!" << endl;
+  hotelRoomsArray[index].isReserved = false;
+      cout << "\nCustomer checked out successfully!" << endl;
+        cout << "Room is now available." << endl;
+    }
+    else {
+        cout << "\nCheck out cancelled." << endl;
+    }
+}
 
 int main() {
     int choice;
