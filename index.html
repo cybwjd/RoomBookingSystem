@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Booking System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="topbar">
+            <div>
+                <p class="eyebrow">Data Structure Project</p>
+                <h1>Room Booking System</h1>
+            </div>
+
+            <div class="stats">
+                <span><strong>0</strong> reserved</span>
+                <span><strong>50</strong> available</span>
+            </div>
+        </section>
+
+        <section class="workspace">
+            <aside class="panel control-panel">
+                <div class="tabs">
+                    <button class="tab active">Book</button>
+                    <button class="tab">Search</button>
+                    <button class="tab">Check Out</button>
+                    <button class="tab">Extend</button>
+                    <button class="tab">Cancel</button>
+                </div>
+
+                <form class="form">
+                    <label>
+                        Room Number
+                        <input type="number" min="1" max="50" required>
+                    </label>
+
+                    <label>
+                        Client Name
+                        <input type="text">
+                    </label>
+
+                    <label>
+                        Room Type
+                        <select>
+                            <option>Standard</option>
+                            <option>VIP</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Check-in Date
+                        <input type="date">
+                    </label>
+
+                    <label>
+                        Check-out Date
+                        <input type="date">
+                    </label>
+
+                    <label>
+                        Contact Number
+                        <input type="tel">
+                    </label>
+
+                    <button class="primary-btn" type="submit">Book Room</button>
+                </form>
+
+                <p class="message">Choose an action and enter the room information.</p>
+            </aside>
+
+            <section class="panel rooms-panel">
+                <div class="section-heading">
+                    <h2>Rooms Array</h2>
+                    <p>Each card represents one index in the array.</p>
+                </div>
+
+                <div class="rooms-grid">
+                    <button class="room-card selected">1</button>
+                    <button class="room-card">2</button>
+                    <button class="room-card reserved">3</button>
+                    <button class="room-card">4</button>
+                    <button class="room-card">5</button>
+                    <button class="room-card">6</button>
+                    <button class="room-card">7</button>
+                    <button class="room-card reserved">8</button>
+                    <button class="room-card">9</button>
+                    <button class="room-card">10</button>
+                </div>
+            </section>
+
+            <aside class="panel details-panel">
+                <div class="section-heading">
+                    <h2>Selected Booking</h2>
+                    <p>This room is currently available.</p>
+                </div>
+
+                <dl class="details-list">
+                    <div class="details-row">
+                        <dt>Room Number</dt>
+                        <dd>1</dd>
+                    </div>
+
+                    <div class="details-row">
+                        <dt>Status</dt>
+                        <dd>Available</dd>
+                    </div>
+
+                    <div class="details-row">
+                        <dt>Client Name</dt>
+                        <dd>-</dd>
+                    </div>
+
+                    <div class="details-row">
+                        <dt>Room Type</dt>
+                        <dd>-</dd>
+                    </div>
+
+                    <div class="details-row">
+                        <dt>Check-in Date</dt>
+                        <dd>-</dd>
+                    </div>
+
+                    <div class="details-row">
+                        <dt>Check-out Date</dt>
+                        <dd>-</dd>
+                    </div>
+
+                    <div class="details-row">
+                        <dt>Contact Number</dt>
+                        <dd>-</dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
+    </main>
+    <script src="script.js"></script>
+
+</body>
+</html>

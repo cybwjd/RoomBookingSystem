@@ -1,0 +1,264 @@
+:root {
+    --bg: #f5f7f2;
+    --panel: #ffffff;
+    --ink: #19201c;
+    --muted: #697268;
+    --line: #dfe5dc;
+    --green: #2f7d55;
+    --green-soft: #e6f4ec;
+    --red: #b64545;
+    --red-soft: #fdecec;
+    --focus: #1f6feb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+.app-shell {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-end;
+    padding-bottom: 20px;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+.stats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.stats span {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--muted);
+}
+
+.stats strong {
+    color: var(--ink);
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: 310px 1fr 280px;
+    gap: 16px;
+    align-items: start;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tab {
+    border: 1px solid var(--line);
+    background: #f8faf7;
+    border-radius: 8px;
+    min-height: 40px;
+    cursor: pointer;
+    color: var(--muted);
+}
+
+.tab.active {
+    border-color: var(--green);
+    background: var(--green-soft);
+    color: var(--green);
+    font-weight: bold;
+}
+
+.form {
+    display: grid;
+    gap: 12px;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 11px;
+    color: var(--ink);
+    background: white;
+}
+
+input:focus,
+select:focus,
+button:focus {
+    outline: 3px solid rgba(31, 111, 235, 0.2);
+    border-color: var(--focus);
+}
+
+.primary-btn {
+    border: 0;
+    border-radius: 8px;
+    min-height: 44px;
+    background: var(--green);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.message {
+    margin-top: 14px;
+    min-height: 22px;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: baseline;
+    margin-bottom: 14px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(44px, 1fr));
+    gap: 8px;
+}
+
+.room-card {
+    aspect-ratio: 1;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #f8faf7;
+    color: var(--ink);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+}
+
+.room-card.reserved {
+    border-color: rgba(182, 69, 69, 0.35);
+    background: var(--red-soft);
+    color: var(--red);
+}
+
+.room-card.selected {
+    outline: 3px solid rgba(31, 111, 235, 0.22);
+    border-color: var(--focus);
+}
+
+.details-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.details-row {
+    display: grid;
+    gap: 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+}
+
+.details-row dt {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.details-row dd {
+    margin: 0;
+}
+
+@media (max-width: 980px) {
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .rooms-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+    .app-shell {
+        width: min(100% - 20px, 1180px);
+        padding: 18px 0;
+    }
+
+    .topbar {
+        display: grid;
+        align-items: start;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .section-heading {
+        display: grid;
+    }
+}
