@@ -1,0 +1,288 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Room {
+    int roomNumber;
+    string clientName;
+    string roomType;
+    string checkInDate;
+    string checkOutDate;
+    string contactNumber;
+    bool isReserved = false;
+};
+
+const int MAX = 50;
+Room hotelRoomsArray[MAX];
+
+// aram
+void BookRoom() {
+    int roomNum;
+    cout << "\nEnter Room Number to Book (1-" << MAX << "): ";
+    cin >> roomNum;
+
+    if (roomNum < 1 || roomNum > MAX) {
+        cout << "Invalid Room Number!" << endl;
+        return;
+    }
+
+    int index = roomNum - 1;
+
+    if (hotelRoomsArray[index].isReserved) {
+        cout << "Room is already booked!" << endl;
+    }
+    else {
+        hotelRoomsArray[index].roomNumber = roomNum;
+        cout << "Enter Your Name: ";
+        cin >> hotelRoomsArray[index].clientName;
+        cout << "Room Type (Standard/VIP): ";
+        cin >> hotelRoomsArray[index].roomType;
+        cout << "Check-in Date: ";
+        cin >> hotelRoomsArray[index].checkInDate;
+        cout << "Check-out Date: ";
+        cin >> hotelRoomsArray[index].checkOutDate;
+        cout << "Contact Number: ";
+        cin >> hotelRoomsArray[index].contactNumber;
+        hotelRoomsArray[index].isReserved = true;
+
+        cout << "\nYou have booked room number " << roomNum << endl;
+    }
+}
+
+// wajd
+void CancelBooking() {
+    int roomNum;
+
+    cout << "\n========== Cancel Booking ==========" << endl;
+    cout << "Enter Room Number to Cancel Booking (1-" << MAX << "): ";
+    cin >> roomNum;
+
+    // Make sure the room number is within the valid range.
+    if (roomNum < 1 || roomNum > MAX) {
+        cout << "\nInvalid Room Number!" << endl;
+        return;
+    }
+
+    // Convert the room number to an array index.
+    int index = roomNum - 1;
+
+    // If the room is not reserved, there is no booking to cancel.
+    if (!hotelRoomsArray[index].isReserved) {
+        cout << "\nNo booking found for room number " << roomNum << "." << endl;
+        return;
+    }
+
+    // Show the booking details before cancelling it.
+    cout << "\nBooking Found!" << endl;
+    cout << "-----------------------------------" << endl;
+    cout << "Room Number   : " << hotelRoomsArray[index].roomNumber << endl;
+    cout << "Client Name   : " << hotelRoomsArray[index].clientName << endl;
+    cout << "Room Type     : " << hotelRoomsArray[index].roomType << endl;
+    cout << "Check-in Date : " << hotelRoomsArray[index].checkInDate << endl;
+    cout << "Check-out Date: " << hotelRoomsArray[index].checkOutDate << endl;
+    cout << "Contact Number: " << hotelRoomsArray[index].contactNumber << endl;
+    cout << "-----------------------------------" << endl;
+
+    char choice;
+    cout << "Are you sure you want to cancel this booking? (Y/N): ";
+    cin >> choice;
+
+    // Cancel the booking only if the user confirms.
+    if (choice == 'Y' || choice == 'y') {
+        hotelRoomsArray[index].clientName = "";
+        hotelRoomsArray[index].roomType = "";
+        hotelRoomsArray[index].checkInDate = "";
+        hotelRoomsArray[index].checkOutDate = "";
+        hotelRoomsArray[index].contactNumber = "";
+        hotelRoomsArray[index].isReserved = false;
+
+        cout << "\nBooking cancelled successfully!" << endl;
+        cout << "Room number " << roomNum << " is now available." << endl;
+    }
+    else {
+        cout << "\nCancellation cancelled by user." << endl;
+        cout << "The booking is still active." << endl;
+    }
+}
+
+// Reema
+void ExtendBooking(Room hotelRoomsArray[], int MAX) {
+    int roomNumber;
+    cout << "Extend Booking" << endl;
+    cout << "Enter Room Number: " << endl;
+    cin >> roomNumber;
+
+    int foundRoom = -1;
+
+    for (int i = 0; i < MAX; i++) {
+        if (hotelRoomsArray[i].roomNumber == roomNumber && hotelRoomsArray[i].isReserved) {
+            foundRoom = i;
+            break;
+        }
+    }
+
+    if (foundRoom == -1) {
+        cout << "Room not found || is not currently reserved" << endl;
+        return;
+    }
+
+    Room& room = hotelRoomsArray[foundRoom];
+
+    cout << "Current Booking " << endl;
+    cout << "Client   : " << room.clientName << endl;
+    cout << "Room Type: " << room.roomType << endl;
+    cout << "Check-In : " << room.checkInDate << endl;
+    cout << "Check-Out: " << room.checkOutDate << endl;
+    cout << "Contact  : " << room.contactNumber << endl;
+
+    string newCheckOut;
+    cout << "Enter New Check-Out Date (day/month/year): ";
+    cin >> newCheckOut;
+
+    if (newCheckOut == room.checkOutDate) {
+        cout << "New check-out date is the same no changes made." << endl;
+        return;
+    }
+
+    room.checkOutDate = newCheckOut;
+
+    cout << "Booking extended" << endl;
+    cout << "New Check-Out Date: " << room.checkOutDate << endl;
+
+    cout << "Updated Booking " << endl;
+    cout << "Client   : " << room.clientName << endl;
+    cout << "Room Type: " << room.roomType << endl;
+    cout << "Check-In : " << room.checkInDate << endl;
+    cout << "Check-Out: " << room.checkOutDate << endl;
+    cout << "Contact  : " << room.contactNumber << endl;
+}
+
+// Maha
+void SearchBooking() {
+    int roomNum;
+
+    cout << "\nSearch Booking" << endl;
+    cout << "Enter Room Number (1-" << MAX << "): ";
+    cin >> roomNum;
+
+    if (roomNum < 1 || roomNum > MAX) {
+        cout << "Invalid Room Number!" << endl;
+        return;
+    }
+
+    int index = roomNum - 1;
+
+    if (hotelRoomsArray[index].isReserved) {
+        cout << "\nBooking Details" << endl;
+        cout << "Room Number : " << hotelRoomsArray[index].roomNumber << endl;
+        cout << "Client Name : " << hotelRoomsArray[index].clientName << endl;
+        cout << "Room Type   : " << hotelRoomsArray[index].roomType << endl;
+        cout << "Check-In    : " << hotelRoomsArray[index].checkInDate << endl;
+        cout << "Check-Out   : " << hotelRoomsArray[index].checkOutDate << endl;
+        cout << "Contact No. : " << hotelRoomsArray[index].contactNumber << endl;
+    }
+    else {
+        cout << "\nNo booking found." << endl;
+    }
+}
+
+// weam
+void CheckOutRoom() {
+    int roomNum;
+
+    cout << "\n========== Check Out Room ==========" << endl;
+    cout << "Enter Room Number: ";
+    cin >> roomNum;
+
+    if (roomNum < 1 || roomNum > MAX) {
+        cout << "Invalid room number!" << endl;
+        return;
+    }
+
+    int index = roomNum - 1;
+
+    if (!hotelRoomsArray[index].isReserved) {
+        cout << "Room is not reserved!" << endl;
+        return;
+    }
+
+    char choice;
+    cout << "Proceed to payment? (Y/N): ";
+    cin >> choice;
+
+    if (choice == 'Y' || choice == 'y') {
+        cout << "\nProcessing payment..." << endl;
+
+        if (hotelRoomsArray[index].roomType == "VIP" || hotelRoomsArray[index].roomType == "vip") {
+            cout << "Total: 500 SAR" << endl;
+        }
+        else {
+            cout << "Total: 300 SAR" << endl;
+        }
+
+        cout << "Payment successful!" << endl;
+
+        hotelRoomsArray[index].clientName = "";
+        hotelRoomsArray[index].roomType = "";
+        hotelRoomsArray[index].checkInDate = "";
+        hotelRoomsArray[index].checkOutDate = "";
+        hotelRoomsArray[index].contactNumber = "";
+        hotelRoomsArray[index].isReserved = false;
+
+        cout << "\nCustomer checked out successfully!" << endl;
+        cout << "Room is now available." << endl;
+    }
+    else {
+        cout << "\nCheck out cancelled." << endl;
+    }
+}
+
+int main() {
+    int choice;
+
+    do {
+        cout << "\n========== Room Booking System ==========" << endl;
+        cout << "1. Book Room" << endl;
+        cout << "2. Search Booking" << endl;
+        cout << "3. Check Out Room" << endl;
+        cout << "4. Extend Booking" << endl;
+        cout << "5. Cancel Booking" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        // Run the function based on the user's choice.
+        switch (choice) {
+        case 1:
+            BookRoom();
+            break;
+
+        case 2:
+            SearchBooking();
+            break;
+
+        case 3:
+            CheckOutRoom();
+            break;
+
+        case 4:
+            ExtendBooking(hotelRoomsArray, MAX);
+            break;
+
+        case 5:
+            CancelBooking();
+            break;
+
+        case 6:
+            cout << "\nExiting program..." << endl;
+            break;
+
+        default:
+            cout << "\nInvalid choice! Please try again." << endl;
+        }
+
+        // Keep showing the menu until the user chooses Exit.
+    } while (choice != 6);
+
+    return 0;
+}
